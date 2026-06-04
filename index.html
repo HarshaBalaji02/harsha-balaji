@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>if(history.scrollRestoration)history.scrollRestoration="manual";if(window.location.hash)history.replaceState(null,"",window.location.pathname);window.scrollTo(0,0);</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harsha Balaji — Finance & Fintech Builder</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:       #FAF7F2;
+      --cream2:      #F2EBE0;
+      --cream3:      #E6DDD0;
+      --text:        #1C1208;
+      --text2:       #5C4A38;
+      --text3:       #9C8878;
+      --terra:       #BF4B1A;
+      --terra2:      #D4622E;
+      --terra-light: #FDF1EB;
+      --terra-mid:   #F4C4AA;
+      --green:       #2A5C28;
+      --green-light: #EBF2EA;
+      --white:       #FFFFFF;
+      --border:      #DDD5C5;
+      --shadow:      0 2px 20px rgba(28,18,8,0.07);
+      --shadow-lg:   0 8px 48px rgba(28,18,8,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--cream2); }
+    ::-webkit-scrollbar-thumb { background: var(--terra); border-radius: 3px; }
+
+    /* ─── PROGRESS ─── */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px; z-index: 300;
+      background: linear-gradient(90deg, var(--terra), var(--terra2));
+      width: 0%; transition: width 0.1s linear;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 3px; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5rem; height: 68px;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    nav.solid {
+      background: rgba(250,247,242,0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem; color: var(--text); letter-spacing: -0.01em;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--text2); text-decoration: none; font-size: 0.85rem;
+      font-weight: 500; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--terra); }
+    .nav-cta {
+      padding: 0.55rem 1.4rem; background: var(--text); color: var(--cream);
+      border-radius: 100px; font-size: 0.85rem; font-weight: 600;
+      text-decoration: none; transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--terra); transform: translateY(-1px); }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 7rem 5rem 5rem;
+      gap: 4rem;
+      background: var(--cream);
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-circle {
+      position: absolute; width: 700px; height: 700px; border-radius: 50%;
+      background: var(--cream2); right: -200px; top: -100px; z-index: 0;
+    }
+    .hero-left { position: relative; z-index: 1; }
+    .hero-right { position: relative; z-index: 1; display: flex; justify-content: center; }
+
+    .hero-greeting {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.82rem; font-weight: 600; color: var(--terra);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero-greeting::before { content: ''; width: 28px; height: 2px; background: var(--terra); border-radius: 1px; }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 5vw, 5rem);
+      line-height: 1.08; letter-spacing: -0.02em;
+      color: var(--text); margin-bottom: 1.5rem;
+    }
+    h1 em { font-style: italic; color: var(--terra); }
+
+    .hero-desc {
+      font-size: 1.05rem; color: var(--text2); line-height: 1.8;
+      max-width: 480px; margin-bottom: 2.5rem;
+    }
+    .hero-desc strong { color: var(--text); font-weight: 600; }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-fill {
+      padding: 0.85rem 2rem; background: var(--text); color: var(--cream);
+      border-radius: 100px; font-size: 0.9rem; font-weight: 600;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .btn-fill:hover { background: var(--terra); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(191,75,26,0.3); }
+    .btn-line {
+      padding: 0.85rem 2rem; background: transparent; color: var(--text);
+      border: 1.5px solid var(--border); border-radius: 100px;
+      font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: all 0.2s;
+    }
+    .btn-line:hover { border-color: var(--text); }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 3rem;
+      padding-top: 2.5rem; border-top: 1px solid var(--border);
+    }
+    .hstat-val {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem; color: var(--text); letter-spacing: -0.03em; line-height: 1;
+    }
+    .hstat-val em { font-style: normal; color: var(--terra); }
+    .hstat-label { font-size: 0.75rem; color: var(--text3); font-weight: 500; margin-top: 0.3rem; }
+
+    /* Photo */
+    .photo-wrap {
+      position: relative; width: 400px; height: 520px;
+    }
+    .photo-blob {
+      width: 100%; height: 100%;
+      border-radius: 200px 200px 160px 160px;
+      overflow: hidden;
+      background: var(--cream3);
+      box-shadow: var(--shadow-lg);
+    }
+    .photo-blob img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center 10%;
+      display: block;
+    }
+    .photo-badge {
+      position: absolute; bottom: 30px; left: -30px;
+      background: var(--white); border-radius: 14px; padding: 0.9rem 1.2rem;
+      box-shadow: var(--shadow-lg); min-width: 180px;
+    }
+    .pb-label { font-size: 0.7rem; color: var(--text3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+    .pb-val { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--text); margin-top: 0.15rem; line-height: 1.2; }
+    .photo-badge2 {
+      position: absolute; top: 20px; right: -20px;
+      background: var(--terra); border-radius: 12px; padding: 0.8rem 1.1rem;
+      box-shadow: 0 4px 20px rgba(191,75,26,0.35);
+    }
+    .pb2-val { font-size: 1.4rem; font-weight: 800; color: var(--white); line-height: 1; }
+    .pb2-label { font-size: 0.68rem; color: rgba(255,255,255,0.8); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.2rem; }
+
+    /* ─── MARQUEE ─── */
+    .marquee-wrap {
+      background: var(--text); padding: 0.8rem 0;
+      overflow: hidden; white-space: nowrap;
+    }
+    .marquee-track { display: inline-flex; animation: marquee 28s linear infinite; }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      padding: 0 2rem; font-size: 0.82rem; font-weight: 500;
+      color: rgba(255,255,255,0.7); letter-spacing: 0.04em;
+    }
+    .marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--terra2); flex-shrink: 0; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ─── SECTION COMMONS ─── */
+    .section { padding: 7rem 5rem; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .full-bleed-section { padding: 7rem 0; }
+    .full-bleed-section .section-inner { max-width: 1200px; margin: 0 auto; padding: 0 5rem; }
+    .sec-label {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.75rem; font-weight: 700; color: var(--terra);
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .sec-label::before { content: ''; width: 20px; height: 2px; background: var(--terra); border-radius: 1px; }
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -0.02em; line-height: 1.1;
+      color: var(--text); margin-bottom: 1rem;
+    }
+    h2 em { font-style: italic; color: var(--terra); }
+    .section-sub { font-size: 1rem; color: var(--text2); max-width: 560px; line-height: 1.75; margin-bottom: 3rem; }
+    hr.divider { border: none; border-top: 1px solid var(--border); max-width: 1200px; margin: 0 auto; }
+
+    /* ─── PROBLEM ─── */
+    #problem { background: var(--cream2); }
+    .prob-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.2rem; }
+    .prob-card {
+      background: var(--white); border-radius: 20px; padding: 2rem;
+      border: 1px solid var(--border);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .prob-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .prob-num {
+      font-family: 'DM Serif Display', serif; font-size: 3.5rem;
+      color: var(--cream3); line-height: 1; margin-bottom: 1rem; letter-spacing: -0.04em;
+    }
+    .prob-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+    .prob-card p { font-size: 0.83rem; color: var(--text2); line-height: 1.65; }
+
+    /* compare table */
+    .ctable-wrap { overflow-x: auto; border-radius: 16px; border: 1px solid var(--border); margin-top: 3rem; background: var(--white); }
+    table { width: 100%; border-collapse: collapse; }
+    thead tr { background: var(--text); }
+    th { padding: 1rem 1.5rem; font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.6); text-align: left; text-transform: uppercase; letter-spacing: 0.07em; }
+    th:first-child { color: rgba(255,255,255,0.9); border-radius: 16px 0 0 0; }
+    th:last-child { border-radius: 0 16px 0 0; }
+    td { padding: 1rem 1.5rem; font-size: 0.875rem; border-top: 1px solid var(--border); color: var(--text2); vertical-align: top; }
+    td:first-child { font-weight: 600; color: var(--text); }
+    .td-bad { color: #b91c1c; }
+    .td-good { color: var(--green); font-weight: 600; }
+    tr:hover td { background: var(--cream); }
+
+    /* ─── TOOL ─── */
+    #tool { background: var(--cream); }
+    .tool-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 5rem; align-items: center; }
+
+    /* Laptop mockup — MacBook style */
+    .laptop-wrap { display: flex; flex-direction: column; align-items: center; }
+    .laptop { position: relative; width: 100%; filter: drop-shadow(0 16px 32px rgba(28,18,8,0.2)); }
+    .laptop-body {
+      background: linear-gradient(170deg, #d6d6d6 0%, #b8b8b8 100%);
+      border-radius: 8px 8px 0 0;
+      padding: 5px 5px 0;
+      border: 1.5px solid #a8a8a8;
+      border-bottom: none;
+    }
+    .laptop-cam {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: #666; margin: 0 auto 4px;
+    }
+    .laptop-screen {
+      background: #0d1117; border-radius: 3px 3px 0 0; overflow: hidden;
+      aspect-ratio: 16/10;
+    }
+    .laptop-deck {
+      background: linear-gradient(180deg, #c8c8c8 0%, #b0b0b0 100%);
+      border-radius: 0 0 6px 6px;
+      border: 1.5px solid #a8a8a8; border-top: 1px solid #d0d0d0;
+      padding: 5px 8px 6px;
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .keyboard-row { display: flex; gap: 2px; justify-content: center; }
+    .key {
+      height: 5px; background: linear-gradient(180deg, #d8d8d8 0%, #c0c0c0 100%);
+      border-radius: 1.5px; border: 0.5px solid rgba(0,0,0,0.15);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.1); flex: 1;
+    }
+    .key-wide { flex: 2; }
+    .key-space { flex: 6; }
+    .keyboard-trackpad-row { display: flex; justify-content: center; margin-top: 2px; }
+    .laptop-trackpad {
+      width: 22%; height: 7px; background: rgba(0,0,0,0.08);
+      border-radius: 2px; border: 0.5px solid rgba(0,0,0,0.1);
+    }
+    .laptop-shadow {
+      width: 94%; height: 4px; margin: 0 auto;
+      background: linear-gradient(180deg, rgba(0,0,0,0.12) 0%, transparent 100%);
+      border-radius: 0 0 4px 4px;
+    }
+
+    /* Screen content — split view */
+    .screen-ui {
+      height: 100%; background: #0d1117; display: flex; flex-direction: column;
+      font-family: 'Inter', monospace; font-size: 0.6rem; color: rgba(255,255,255,0.8);
+    }
+    .screen-topbar {
+      background: #161b22; padding: 5px 10px; display: flex; align-items: center; gap: 5px;
+      border-bottom: 1px solid rgba(255,255,255,0.07); flex-shrink: 0;
+    }
+    .screen-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .screen-title { font-size: 0.5rem; color: rgba(255,255,255,0.3); margin-left: 6px; letter-spacing: 0.05em; text-transform: uppercase; }
+    /* Split body */
+    .screen-split { display: grid; grid-template-columns: 1fr 1fr; flex: 1; min-height: 0; }
+    .screen-panel { display: flex; flex-direction: column; overflow: hidden; }
+    .screen-panel-left { border-right: 1px solid rgba(255,255,255,0.07); }
+    .screen-panel-header {
+      padding: 5px 8px; font-size: 0.5rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      border-bottom: 1px solid rgba(255,255,255,0.06); flex-shrink: 0;
+    }
+    .sph-parser { color: #fbbf24; background: rgba(251,191,36,0.06); }
+    .sph-results { color: #34d399; background: rgba(52,211,153,0.06); }
+    .screen-panel-body { padding: 6px 8px; flex: 1; overflow: hidden; display: flex; flex-direction: column; gap: 4px; }
+
+    /* Parser side */
+    .parser-doc {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 5px; padding: 5px 7px; flex-shrink: 0;
+    }
+    .parser-doc-label { font-size: 0.48rem; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
+    .parser-doc-name { font-size: 0.55rem; color: #fbbf24; font-weight: 600; }
+    .parser-fields { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+    .parser-field {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 3px 6px; border-radius: 4px;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);
+    }
+    .pf-key { font-size: 0.48rem; color: rgba(255,255,255,0.4); }
+    .pf-val { font-size: 0.52rem; font-weight: 700; color: rgba(255,255,255,0.85); }
+    .pf-val.extracted { color: #fbbf24; }
+    .parser-status {
+      margin-top: auto; padding: 3px 6px; border-radius: 4px;
+      background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.2);
+      font-size: 0.48rem; font-weight: 700; color: #fbbf24; text-align: center;
+      letter-spacing: 0.04em; flex-shrink: 0;
+    }
+
+    /* Results side */
+    .screen-row { display: flex; align-items: center; gap: 5px; padding: 4px 6px; background: rgba(255,255,255,0.03); border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); }
+    .screen-badge { padding: 1px 5px; border-radius: 3px; font-size: 0.45rem; font-weight: 700; flex-shrink: 0; }
+    .sb-ok { background: rgba(16,185,129,0.18); color: #34d399; }
+    .sb-alert { background: rgba(239,68,68,0.18); color: #f87171; }
+    .sb-pending { background: rgba(245,158,11,0.18); color: #fbbf24; }
+    .screen-label { font-size: 0.48rem; color: rgba(255,255,255,0.4); flex: 1; line-height: 1.3; }
+    .screen-val { font-size: 0.5rem; font-weight: 700; color: rgba(255,255,255,0.85); white-space: nowrap; }
+    .screen-footer {
+      background: rgba(16,185,129,0.07); border-top: 1px solid rgba(16,185,129,0.12);
+      padding: 4px 8px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
+    }
+    .sf-label { font-size: 0.46rem; color: rgba(16,185,129,0.7); font-weight: 600; letter-spacing: 0.04em; }
+    .sf-val { font-size: 0.5rem; font-weight: 700; color: #34d399; }
+
+    /* WIP badge — below laptop */
+    .wip-badge {
+      margin-top: 0.9rem;
+      background: var(--terra); color: var(--white);
+      padding: 0.35rem 1rem; border-radius: 100px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em;
+      box-shadow: 0 4px 12px rgba(191,75,26,0.3);
+      display: inline-flex; align-items: center; gap: 0.4rem;
+    }
+
+    /* tool features */
+    .feat-list { display: flex; flex-direction: column; gap: 1.2rem; }
+    .feat {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1.3rem; background: var(--white); border-radius: 16px;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .feat:hover { border-color: var(--terra-mid); transform: translateX(4px); box-shadow: var(--shadow); }
+    .feat-num {
+      font-family: 'DM Serif Display', serif; font-size: 1.5rem;
+      color: var(--terra-mid); line-height: 1; flex-shrink: 0; width: 28px;
+    }
+    .feat h4 { font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
+    .feat p { font-size: 0.83rem; color: var(--text2); line-height: 1.6; }
+
+    .asset-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 2rem; }
+    .apill {
+      padding: 0.35rem 0.9rem; border-radius: 100px;
+      background: var(--cream2); border: 1px solid var(--border);
+      font-size: 0.78rem; color: var(--text2); font-weight: 500;
+      transition: all 0.15s;
+    }
+    .apill:hover { background: var(--terra-light); border-color: var(--terra-mid); color: var(--terra); }
+
+    /* ─── PATENT ─── */
+    #patent { background: var(--text); }
+    .patent-wrap { max-width: 1200px; margin: 0 auto; padding: 0 5rem; }
+    .patent-inner {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px; padding: 4rem;
+      display: grid; grid-template-columns: auto 1fr; gap: 4rem; align-items: center;
+    }
+    .patent-seal {
+      width: 140px; height: 140px; border-radius: 50%; flex-shrink: 0;
+      background: var(--terra-light); border: 3px solid var(--terra-mid);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .ps-icon { font-size: 2.4rem; }
+    .ps-label { font-size: 0.6rem; color: var(--terra); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; text-align: center; margin-top: 0.3rem; line-height: 1.4; }
+    .patent-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem; color: var(--white); line-height: 1.4;
+      letter-spacing: -0.01em; margin-bottom: 1.2rem;
+    }
+    .patent-meta { display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .pm-item { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+    .pm-item strong { color: var(--terra2); font-weight: 600; }
+    .patent-body { font-size: 0.9rem; color: rgba(255,255,255,0.75); line-height: 1.8; margin-bottom: 1.5rem; }
+    .patent-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .ptag {
+      padding: 0.3rem 0.85rem; border-radius: 100px; font-size: 0.75rem; font-weight: 600;
+      background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.65);
+      border: 1px solid rgba(255,255,255,0.12); transition: all 0.15s;
+    }
+    .ptag:hover { background: rgba(191,75,26,0.2); color: var(--terra2); border-color: rgba(191,75,26,0.3); }
+
+    /* ─── EXPERIENCE ─── */
+    #experience { background: var(--cream2); }
+    .exp-grid { display: flex; flex-direction: column; gap: 1.2rem; }
+    .exp-card {
+      background: var(--white); border-radius: 20px; padding: 2rem 2.5rem;
+      border: 1px solid var(--border);
+      transition: box-shadow 0.25s, transform 0.25s;
+      cursor: default;
+    }
+    .exp-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .exp-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
+    .exp-company { font-size: 0.72rem; font-weight: 700; color: var(--terra); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .exp-role { font-family: 'DM Serif Display', serif; font-size: 1.15rem; color: var(--text); letter-spacing: -0.01em; }
+    .exp-right { text-align: right; flex-shrink: 0; }
+    .exp-date { font-size: 0.82rem; font-weight: 600; color: var(--text3); }
+    .exp-loc { font-size: 0.78rem; color: var(--text3); margin-top: 0.15rem; }
+    .exp-bullets { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem; }
+    .ebullet { display: flex; gap: 0.8rem; font-size: 0.86rem; color: var(--text2); line-height: 1.6; }
+    .ebullet::before { content: '→'; color: var(--terra); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .ebullet strong { color: var(--text); font-weight: 700; }
+    .exp-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .etag { padding: 0.25rem 0.8rem; border-radius: 100px; font-size: 0.73rem; font-weight: 600; background: var(--cream); color: var(--text2); border: 1px solid var(--border); }
+
+    /* ─── EDUCATION ─── */
+    #education { background: var(--cream); }
+    .edu-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .edu-card {
+      background: var(--white); border-radius: 20px; padding: 2rem;
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--terra);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .edu-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .edu-school { font-family: 'DM Serif Display', serif; font-size: 1.05rem; color: var(--text); margin-bottom: 0.4rem; line-height: 1.3; }
+    .edu-degree { font-size: 0.85rem; color: var(--text2); font-weight: 500; line-height: 1.5; margin-bottom: 0.5rem; }
+    .edu-loc { font-size: 0.78rem; color: var(--text3); }
+    .cert-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+    .cert-tag {
+      padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.78rem; font-weight: 600;
+      background: var(--terra-light); color: var(--terra); border: 1px solid var(--terra-mid);
+    }
+    .cert-tag.green { background: var(--green-light); color: var(--green); border-color: #b8d4b6; }
+
+    /* ─── BLOG ─── */
+    #blog { background: var(--cream); }
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .blog-card {
+      background: var(--white); border-radius: 20px;
+      border: 1px solid var(--border); overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: transform 0.25s, box-shadow 0.25s;
+      text-decoration: none; color: inherit;
+    }
+    .blog-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .blog-card-top {
+      height: 160px; display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .bct-1 { background: linear-gradient(135deg, #1C1208 0%, #2d1f0f 100%); }
+    .bct-2 { background: linear-gradient(135deg, #4a1a08 0%, #BF4B1A 100%); }
+    .bct-3 { background: linear-gradient(135deg, #0a2818 0%, #2A5C28 100%); }
+    .blog-card-top-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem; color: rgba(255,255,255,0.15);
+      text-align: center; padding: 1.5rem; line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    .blog-card-body { padding: 1.6rem; flex: 1; display: flex; flex-direction: column; }
+    .blog-meta { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.8rem; }
+    .blog-tag {
+      font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 100px;
+    }
+    .bt-fintech { background: var(--terra-light); color: var(--terra); }
+    .bt-ops { background: #FEF9C3; color: #854D0E; }
+    .bt-edu { background: var(--green-light); color: var(--green); }
+    .blog-date { font-size: 0.75rem; color: var(--text3); font-weight: 500; }
+    .blog-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem; color: var(--text); line-height: 1.35;
+      letter-spacing: -0.01em; margin-bottom: 0.8rem;
+    }
+    .blog-excerpt { font-size: 0.83rem; color: var(--text2); line-height: 1.65; flex: 1; margin-bottom: 1.2rem; }
+    .blog-read {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.82rem; font-weight: 700; color: var(--terra);
+      margin-top: auto; transition: gap 0.2s;
+    }
+    .blog-card:hover .blog-read { gap: 0.7rem; }
+    .blog-read-all {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.8rem; border-radius: 100px;
+      border: 1.5px solid var(--border); background: transparent;
+      color: var(--text); font-size: 0.88rem; font-weight: 600;
+      text-decoration: none; margin-top: 3rem;
+      transition: all 0.2s;
+    }
+    .blog-read-all:hover { border-color: var(--terra); color: var(--terra); }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--cream2); }
+    .contact-card {
+      background: var(--text); border-radius: 28px; padding: 6rem 5rem;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .contact-card::before {
+      content: '';
+      position: absolute; width: 600px; height: 600px; border-radius: 50%;
+      background: rgba(191,75,26,0.08);
+      top: -200px; right: -150px;
+    }
+    .contact-card::after {
+      content: '';
+      position: absolute; width: 400px; height: 400px; border-radius: 50%;
+      background: rgba(191,75,26,0.05);
+      bottom: -100px; left: -100px;
+    }
+    .contact-card h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: var(--white); position: relative; z-index: 1;
+    }
+    .contact-card h2 em { color: var(--terra2); }
+    .contact-card p { color: rgba(255,255,255,0.55); font-size: 1rem; max-width: 480px; margin: 1.2rem auto 3rem; position: relative; z-index: 1; line-height: 1.75; }
+    .cta-btn {
+      display: inline-block; padding: 1rem 2.5rem;
+      background: var(--terra); color: var(--white);
+      border-radius: 100px; font-size: 0.95rem; font-weight: 700;
+      text-decoration: none; transition: all 0.2s;
+      box-shadow: 0 8px 32px rgba(191,75,26,0.4);
+      position: relative; z-index: 1;
+    }
+    .cta-btn:hover { background: var(--terra2); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(191,75,26,0.55); }
+    .social-links { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; position: relative; z-index: 1; }
+    .slink {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.65rem 1.4rem; border-radius: 100px;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.7); font-size: 0.85rem; font-weight: 600;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .slink:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 2rem 5rem; background: var(--text); border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    footer p { font-size: 0.82rem; color: rgba(255,255,255,0.35); }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+    footer a:hover { color: var(--terra2); }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal-l { opacity: 0; transform: translateX(-30px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal-l.in { opacity: 1; transform: translateX(0); }
+    .reveal-r { opacity: 0; transform: translateX(30px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal-r.in { opacity: 1; transform: translateX(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      nav { padding: 0 2rem; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; }
+      .hero-right { display: none; }
+      .section, .full-bleed-section .section-inner { padding-left: 2rem; padding-right: 2rem; }
+      .prob-grid { grid-template-columns: 1fr 1fr; }
+      .tool-layout { grid-template-columns: 1fr; }
+      .patent-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .contact-card { padding: 4rem 2rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 2rem; }
+      .patent-wrap { padding: 0 2rem; }
+    }
+    @media (max-width: 640px) {
+      .prob-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 2.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- ─── NAV ─── -->
+<nav id="navbar">
+  <div class="nav-name">Harsha Balaji</div>
+  <ul class="nav-links">
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#tool">Tool</a></li>
+    <li><a href="#patent">Patent</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#blog">Blog</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Connect</a>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-bg-circle"></div>
+
+  <div class="hero-left reveal-l">
+    <div class="hero-greeting">San Francisco, CA</div>
+    <h1>
+      Finance meets<br/>
+      <em>Fintech.</em> Built<br/>
+      from the inside.
+    </h1>
+    <p class="hero-desc">
+      6 years inside one of the world's largest custodians. MBA in Finance & Analytics.
+      Now building the <strong>AI-powered validation system</strong> that catches
+      every counterparty error the industry has ignored for 30 years.
+    </p>
+    <div class="hero-btns">
+      <a href="#tool" class="btn-fill">See the Tool</a>
+      <a href="#experience" class="btn-line">My Experience</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hstat-val"><em>6+</em> Yrs</div>
+        <div class="hstat-label">NT Hedge Fund Ops</div>
+      </div>
+      <div>
+        <div class="hstat-val"><em>$2.3B</em></div>
+        <div class="hstat-label">AUM Managed</div>
+      </div>
+      <div>
+        <div class="hstat-val"><em>98%</em></div>
+        <div class="hstat-label">Processing Time Cut</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right reveal-r">
+    <div class="photo-wrap">
+      <div class="photo-blob">
+        <!-- Replace src with your photo path once copied to portfolio/ folder -->
+        <img src="photo.jpg" alt="Harsha Balaji" id="hero-photo" />
+      </div>
+      <div class="photo-badge">
+        <div class="pb-label">Patent Filed</div>
+        <div class="pb-val">USPTO<br/>May 2026</div>
+      </div>
+      <div class="photo-badge2">
+        <div class="pb2-val">MBA</div>
+        <div class="pb2-label">Finance &<br/>Analytics</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MARQUEE ─── -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="marquee-dot"></span>Hedge Fund Accounting</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>OTC Derivatives</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Adversarial Validation</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>NAV Reconciliation</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Agentic AI</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>ISDA Agreements</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Syndicated Loans</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Prime Brokerage</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Fund Operations</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>LLM Document Extraction</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Hedge Fund Accounting</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>OTC Derivatives</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Adversarial Validation</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>NAV Reconciliation</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Agentic AI</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>ISDA Agreements</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Syndicated Loans</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Prime Brokerage</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Fund Operations</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>LLM Document Extraction</span>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- ─── PROBLEM ─── -->
+<section id="problem" class="full-bleed-section">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="sec-label">The Problem</div>
+      <h2>The Industry Runs on<br/>a <em>Broken Assumption</em></h2>
+      <p class="section-sub">Every major fund administrator validates counterparty cashflows the same flawed way. If your number matches their number — it must be correct. But what if both are wrong?</p>
+    </div>
+    <div class="prob-grid">
+      <div class="prob-card reveal"><div class="prob-num">01</div><h3>Interest Leakage</h3><p>Errors in loan notices, swap payments, and prime brokerage statements go undetected for months. Basis-point losses compound silently and erode fund performance.</p></div>
+      <div class="prob-card reveal"><div class="prob-num">02</div><h3>False Positive Breaks</h3><p>Teams spend 80% of their time clearing reconciliation breaks that are timing differences, not real errors. Real errors hide in the noise and go unrecovered.</p></div>
+      <div class="prob-card reveal"><div class="prob-num">03</div><h3>Linear Scaling</h3><p>Every new strategy or AUM milestone requires proportionally more headcount. Growth is permanently capped by the humans you can hire and train.</p></div>
+      <div class="prob-card reveal"><div class="prob-num">04</div><h3>Unstructured Blindspot</h3><p>Credit agreements and ISDA confirmations are PDFs. Legacy systems can't read them — so they never verify the math. They just match two potentially wrong numbers.</p></div>
+    </div>
+    <div class="ctable-wrap reveal">
+      <table>
+        <thead><tr>
+          <th>Dimension</th>
+          <th>Current State (Industry)</th>
+          <th>Agentic Fund Ops</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Data Integrity</td><td class="td-bad">Reactive — errors surface at month-end</td><td class="td-good">✓ Real-time adversarial audit before NAV impact</td></tr>
+          <tr><td>Operational Focus</td><td class="td-bad">80% time on manual entry & false breaks</td><td class="td-good">✓ 90% noise auto-resolved — team handles true exceptions</td></tr>
+          <tr><td>Yield Impact</td><td class="td-bad">Passive leakage — basis points lost undetected</td><td class="td-good">✓ Active recovery — every cashflow audited vs. legal terms</td></tr>
+          <tr><td>Scalability</td><td class="td-bad">Linear — more AUM = more headcount</td><td class="td-good">✓ AI handles volume growth, no additional hires</td></tr>
+          <tr><td>Validation Method</td><td class="td-bad">Match counterparty vs. internal ledger</td><td class="td-good">✓ Recompute from contract — true ground truth</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ─── TOOL ─── -->
+<section id="tool" class="full-bleed-section">
+  <div class="section-inner">
+    <div class="tool-layout">
+      <div class="reveal-l">
+        <div class="sec-label">The Tool</div>
+        <h2>3-Way Validation.<br/><em>Contract as Truth.</em></h2>
+        <p class="section-sub" style="margin-bottom:2rem;">Unlike every reconciliation tool on the market, this goes back to the original legal agreement — recomputes what the cashflow <em>should</em> be — then challenges the counterparty if it's wrong.</p>
+
+        <div class="feat-list">
+          <div class="feat"><div class="feat-num">1</div><div><h4>AI Document Parser</h4><p>Reads credit agreements & ISDA confirmations in raw PDF — extracts rate, spread, day-count, payment schedule automatically.</p></div></div>
+          <div class="feat"><div class="feat-num">2</div><div><h4>Contractual Recomputation Engine</h4><p>Independently calculates expected cashflows from legal terms across syndicated loans, OTC derivatives, prime brokerage, and fixed income.</p></div></div>
+          <div class="feat"><div class="feat-num">3</div><div><h4>Adversarial Challenge Layer</h4><p>Auto-generates formal discrepancy notices with contractual citations when computed amounts diverge from counterparty statements.</p></div></div>
+          <div class="feat"><div class="feat-num">4</div><div><h4>Agentic Exception Management</h4><p>Routes only true breaks to human reviewers. Everything else auto-resolved with full audit trail — eliminating the false-positive hamster wheel.</p></div></div>
+        </div>
+
+        <div class="asset-pills">
+          <span class="apill">Syndicated Loans</span>
+          <span class="apill">IRS / CDS / TRS</span>
+          <span class="apill">Prime Brokerage</span>
+          <span class="apill">Fixed Income</span>
+          <span class="apill">Repo / SBL</span>
+          <span class="apill">CLO Tranches</span>
+          <span class="apill">BDC Facilities</span>
+          <span class="apill">Corp Actions</span>
+          <span class="apill">Futures & Options</span>
+          <span class="apill">FRNs</span>
+        </div>
+      </div>
+
+      <div class="reveal-r">
+        <div class="laptop-wrap">
+          <div class="laptop">
+            <div class="laptop-body">
+              <div class="laptop-cam"></div>
+              <div class="laptop-screen">
+                <div class="screen-ui">
+                  <div class="screen-topbar">
+                    <div class="screen-dot" style="background:#ff5f57"></div>
+                    <div class="screen-dot" style="background:#febc2e"></div>
+                    <div class="screen-dot" style="background:#28c840"></div>
+                    <div class="screen-title">Adversarial Validation Engine — v0.1 · Split View</div>
+                  </div>
+                  <div class="screen-split">
+
+                    <!-- LEFT: Parser -->
+                    <div class="screen-panel screen-panel-left">
+                      <div class="screen-panel-header sph-parser">⚙ AI Document Parser</div>
+                      <div class="screen-panel-body">
+                        <div class="parser-doc">
+                          <div class="parser-doc-label">Input Document</div>
+                          <div class="parser-doc-name">📄 CreditAgreement_SOFR_2024.pdf</div>
+                        </div>
+                        <div style="font-size:0.44rem;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px;">Extracted Fields</div>
+                        <div class="parser-fields">
+                          <div class="parser-field">
+                            <span class="pf-key">Benchmark Rate</span>
+                            <span class="pf-val extracted">SOFR</span>
+                          </div>
+                          <div class="parser-field">
+                            <span class="pf-key">Spread</span>
+                            <span class="pf-val extracted">+350 bps</span>
+                          </div>
+                          <div class="parser-field">
+                            <span class="pf-key">Day Count</span>
+                            <span class="pf-val extracted">Act / 360</span>
+                          </div>
+                          <div class="parser-field">
+                            <span class="pf-key">Payment Freq</span>
+                            <span class="pf-val extracted">Quarterly</span>
+                          </div>
+                          <div class="parser-field">
+                            <span class="pf-key">Notional</span>
+                            <span class="pf-val extracted">$10,000,000</span>
+                          </div>
+                          <div class="parser-field">
+                            <span class="pf-key">Period Days</span>
+                            <span class="pf-val extracted">14 days</span>
+                          </div>
+                          <div class="parser-field">
+                            <span class="pf-key">Expected CF</span>
+                            <span class="pf-val" style="color:#34d399;">$19,444.44</span>
+                          </div>
+                        </div>
+                        <div class="parser-status">✓ EXTRACTION COMPLETE</div>
+                      </div>
+                    </div>
+
+                    <!-- RIGHT: Validation Results -->
+                    <div class="screen-panel">
+                      <div class="screen-panel-header sph-results">⚡ Validation Results</div>
+                      <div class="screen-panel-body">
+                        <div style="font-size:0.44rem;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:0.06em;">Active · 5 Instruments</div>
+                        <div class="screen-row">
+                          <span class="screen-badge sb-alert">BREAK</span>
+                          <span class="screen-label">Loan · SOFR+350bps</span>
+                          <span class="screen-val">Δ $694.44</span>
+                        </div>
+                        <div class="screen-row">
+                          <span class="screen-badge sb-ok">MATCH</span>
+                          <span class="screen-label">IRS · 4.25% Fixed</span>
+                          <span class="screen-val">$0.00</span>
+                        </div>
+                        <div class="screen-row">
+                          <span class="screen-badge sb-pending">REVIEW</span>
+                          <span class="screen-label">CDS · 100bps Qtly</span>
+                          <span class="screen-val">Δ $112.50</span>
+                        </div>
+                        <div class="screen-row">
+                          <span class="screen-badge sb-ok">MATCH</span>
+                          <span class="screen-label">Prime Brok · SBL</span>
+                          <span class="screen-val">$0.00</span>
+                        </div>
+                        <div class="screen-row">
+                          <span class="screen-badge sb-alert">BREAK</span>
+                          <span class="screen-label">Repo · O/N 5.32%</span>
+                          <span class="screen-val">Δ $28.75</span>
+                        </div>
+                      </div>
+                      <div class="screen-footer">
+                        <span class="sf-label">Recovered</span>
+                        <span class="sf-val">$835.69</span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="laptop-deck">
+              <div class="keyboard-row">
+                <div class="key key-wide"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key key-wide"></div>
+              </div>
+              <div class="keyboard-row">
+                <div class="key key-wide"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key key-wide"></div>
+              </div>
+              <div class="keyboard-row">
+                <div class="key key-wide"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key"></div><div class="key key-wide"></div>
+              </div>
+              <div class="keyboard-row">
+                <div class="key key-wide"></div><div class="key key-space"></div><div class="key key-wide"></div>
+              </div>
+              <div class="keyboard-trackpad-row"><div class="laptop-trackpad"></div></div>
+            </div>
+          </div>
+          <div class="laptop-shadow"></div>
+          <div class="wip-badge">🚧 In Development</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ─── PATENT ─── -->
+<section id="patent" style="background:var(--text);padding:7rem 0;">
+  <div class="patent-wrap">
+    <div class="reveal" style="margin-bottom:3rem;">
+      <div class="sec-label" style="color:var(--terra2);">Intellectual Property</div>
+      <h2 style="color:var(--white);">Patent-Pending <em>Innovation</em></h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.5);">The core adversarial validation method is protected by a provisional patent filed with the USPTO — establishing priority on a fundamentally new approach to financial counterparty verification.</p>
+    </div>
+    <div class="patent-inner reveal">
+      <div class="patent-seal">
+        <div class="ps-icon">🏛️</div>
+        <div class="ps-label">USPTO<br/>Provisional<br/>May 2026</div>
+      </div>
+      <div>
+        <div class="patent-title">Method and System for Adversarial Validation of Financial Counterparty Cashflow Statements Using Contractual Terms as the Authoritative Source of Truth</div>
+        <div class="patent-meta">
+          <div class="pm-item"><strong>Inventor:</strong> Harsha Balaji</div>
+          <div class="pm-item"><strong>Filed:</strong> May 2026</div>
+          <div class="pm-item"><strong>Status:</strong> Provisional Application Filed</div>
+          <div class="pm-item"><strong>Office:</strong> USPTO</div>
+        </div>
+        <p class="patent-body">Computer-implemented methods for independently validating the mathematical accuracy of cashflow statements issued by financial counterparties — including agent banks, prime brokers, custodians, and clearing houses — by recomputing expected cashflows from executed contractual terms and adversarially challenging stated figures where discrepancies are identified. The concept: a 3-way reconciliation with the original contract as the authoritative source of truth.</p>
+        <div class="patent-tags">
+          <span class="ptag">Financial Technology</span>
+          <span class="ptag">AI / Machine Learning</span>
+          <span class="ptag">Fund Administration</span>
+          <span class="ptag">OTC Derivatives</span>
+          <span class="ptag">Syndicated Lending</span>
+          <span class="ptag">Document Intelligence</span>
+          <span class="ptag">LLM Extraction</span>
+          <span class="ptag">Adversarial Validation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ─── EXPERIENCE ─── -->
+<section id="experience" class="full-bleed-section">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="sec-label">Work Experience</div>
+      <h2>Career <em>Highlights</em></h2>
+      <p class="section-sub">From hedge fund accounting on the institutional floor to building AI-powered fintech from the ground up.</p>
+    </div>
+    <div class="exp-grid">
+
+      <div class="exp-card reveal">
+        <div class="exp-card-top">
+          <div>
+            <div class="exp-company">IIC Technologies Ltd.</div>
+            <div class="exp-role">Business Strategy Analyst</div>
+          </div>
+          <div class="exp-right">
+            <div class="exp-date">Aug 2025 – Jan 2026</div>
+            <div class="exp-loc">San Francisco, CA</div>
+          </div>
+        </div>
+        <div class="exp-bullets">
+          <div class="ebullet">Built automated Excel-based RFP search tool with Power Query, VBA & ChatGPT integration, reducing review time by <strong>80%</strong>.</div>
+          <div class="ebullet">Built Go/No-Go scoring matrix for US expansion qualification and strategic alignment evaluation.</div>
+        </div>
+        <div class="exp-tags"><span class="etag">Power Query</span><span class="etag">VBA</span><span class="etag">AI Tools</span><span class="etag">Strategy</span></div>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-card-top">
+          <div>
+            <div class="exp-company">Independent Financial Advisor</div>
+            <div class="exp-role">Founder & Principal</div>
+          </div>
+          <div class="exp-right">
+            <div class="exp-date">Aug 2024 – Present</div>
+            <div class="exp-loc">San Francisco, CA</div>
+          </div>
+        </div>
+        <div class="exp-bullets">
+          <div class="ebullet">CA-licensed life, health & accident insurance advisor — <strong>10+ clients</strong> on tax-advantaged retirement planning (LIRP/ROTH structures).</div>
+          <div class="ebullet">Integrated tax planning, insurance optimization, and financial modeling into holistic client strategies.</div>
+        </div>
+        <div class="exp-tags"><span class="etag">CA Licensed</span><span class="etag">Retirement Planning</span><span class="etag">LIRP/ROTH</span><span class="etag">Financial Planning</span></div>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-card-top">
+          <div>
+            <div class="exp-company">Mynd</div>
+            <div class="exp-role">Finance Operations Lead — AI Integration & Strategy</div>
+          </div>
+          <div class="exp-right">
+            <div class="exp-date">Nov 2023 – Mar 2025</div>
+            <div class="exp-loc">San Francisco, CA</div>
+          </div>
+        </div>
+        <div class="exp-bullets">
+          <div class="ebullet">Architected financial operations framework and <strong>raised $100K from angel investors</strong>; managed cap table and SAFE documentation.</div>
+          <div class="ebullet">Built AI-enhanced financial models; improved gross margin from <strong>68% → 81%</strong>, acquired <strong>50+ paying customers</strong>.</div>
+          <div class="ebullet">Extended financial runway from <strong>6 to 10 months</strong>, identified $35K in efficiencies, cut monthly close time by <strong>60%</strong>.</div>
+        </div>
+        <div class="exp-tags"><span class="etag">$100K Raised</span><span class="etag">Financial Modeling</span><span class="etag">AI Automation</span><span class="etag">Cap Table</span></div>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-card-top">
+          <div>
+            <div class="exp-company">Northern Trust</div>
+            <div class="exp-role">Senior Fund Accountant — Hedge Fund Accounting</div>
+          </div>
+          <div class="exp-right">
+            <div class="exp-date">Nov 2021 – May 2022</div>
+            <div class="exp-loc">Pune, India</div>
+          </div>
+        </div>
+        <div class="exp-bullets">
+          <div class="ebullet">Managed daily/monthly reconciliation for <strong>$2.3B AUM</strong> hedge fund portfolios; maintained <strong>99.8% accuracy</strong> with zero exceptions.</div>
+          <div class="ebullet">Automated reconciliation workflows using Excel Macros and SQL, reducing processing time by <strong>98% (30 min → 30 sec)</strong>.</div>
+          <div class="ebullet">Led 12-hour SLA deliverables; <strong>99.7% error-free delivery</strong> across 18 monthly client deliverables.</div>
+          <div class="ebullet">Conducted SSAE-18 compliance audits, resolving <strong>47 exceptions</strong> with zero client-facing escalations.</div>
+        </div>
+        <div class="exp-tags"><span class="etag">$2.3B AUM</span><span class="etag">NAV Validation</span><span class="etag">SSAE-18</span><span class="etag">SQL</span><span class="etag">Excel VBA</span></div>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-card-top">
+          <div>
+            <div class="exp-company">Northern Trust</div>
+            <div class="exp-role">Fund Accountant — Hedge Fund Accounting</div>
+          </div>
+          <div class="exp-right">
+            <div class="exp-date">Jun 2019 – Oct 2021</div>
+            <div class="exp-loc">Pune, India</div>
+          </div>
+        </div>
+        <div class="exp-bullets">
+          <div class="ebullet">Resolved a complex <strong>6-month-old $1M+ prime broker break</strong> by reconstructing trade data within 2 weeks.</div>
+          <div class="ebullet">Performed NAV and P&L validation, investigating breaks and variance analysis to ensure balance sheet integrity.</div>
+          <div class="ebullet">Built reusable investigation templates; maintained <strong>98% same-day resolution rate</strong>, reducing future break time by 35%.</div>
+        </div>
+        <div class="exp-tags"><span class="etag">Prime Broker Rec</span><span class="etag">P&L Validation</span><span class="etag">Break Resolution</span><span class="etag">OTC Derivatives</span></div>
+      </div>
+
+      <div class="exp-card reveal">
+        <div class="exp-card-top">
+          <div>
+            <div class="exp-company">Northern Trust</div>
+            <div class="exp-role">Analyst — Hedge Fund Accounting</div>
+          </div>
+          <div class="exp-right">
+            <div class="exp-date">Jul 2016 – May 2019</div>
+            <div class="exp-loc">Pune, India</div>
+          </div>
+        </div>
+        <div class="exp-bullets">
+          <div class="ebullet">Managed daily cash and position reconciliations for OTC derivatives across <strong>8 portfolios</strong>, maintaining a <strong>&lt;0.1% exception rate</strong>.</div>
+          <div class="ebullet">Conducted BOD/EOD reconciliation checks on <strong>85+ daily positions</strong>; ensured 100% error-free reporting.</div>
+        </div>
+        <div class="exp-tags"><span class="etag">OTC Derivatives</span><span class="etag">Cash Rec</span><span class="etag">Position Rec</span><span class="etag">BOD/EOD</span></div>
+      </div>
+
+    </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ─── EDUCATION ─── -->
+<section id="education" class="full-bleed-section">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="sec-label">Education</div>
+      <h2>Academic <em>Foundation</em></h2>
+    </div>
+    <div class="edu-grid reveal">
+      <div class="edu-card">
+        <div class="edu-school">University of San Francisco</div>
+        <div class="edu-degree">MBA — Finance & Analytics</div>
+        <div class="edu-loc">San Francisco, CA</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-school">Ness Wadia College of Commerce</div>
+        <div class="edu-degree">Post Graduate Diploma — Banking & Finance</div>
+        <div class="edu-loc">Pune, India</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-school">Symbiosis College of Arts & Commerce</div>
+        <div class="edu-degree">Bachelor of Commerce — Banking & Finance</div>
+        <div class="edu-loc">Pune, India</div>
+      </div>
+    </div>
+    <div class="cert-row reveal" style="margin-top:2rem;">
+      <span class="cert-tag">🏛️ USPTO Provisional Patent — May 2026</span>
+      <span class="cert-tag green">✓ CA Life, Health & Accident Insurance License</span>
+      <span class="cert-tag">📊 CPA — In Progress</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ─── BLOG ─── -->
+<section id="blog" class="full-bleed-section">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="sec-label">Writing</div>
+      <h2>From the <em>Blog</em></h2>
+      <p class="section-sub">Thoughts on fund operations, financial technology, and the broken assumptions the industry has accepted for too long.</p>
+    </div>
+    <div class="blog-grid">
+
+      <a class="blog-card reveal" href="https://harshabalaji.wordpress.com/2026/05/14/wall-street-just-opened-the-door-to-ai-i-have-been-building-what-comes-next/" target="_blank">
+        <div class="blog-card-top bct-1">
+          <div class="blog-card-top-text">Wall Street & AI</div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span class="blog-tag bt-fintech">Fintech</span>
+            <span class="blog-date">May 14, 2026</span>
+          </div>
+          <div class="blog-title">Wall Street just opened the door to AI. I have been building what comes next.</div>
+          <div class="blog-excerpt">A few weeks ago, my patent-pending adversarial validation method reached a milestone — and then Anthropic and OpenAI announced billion-dollar partnerships with Wall Street. The industry is approaching a major shift in how financial operations are designed and validated.</div>
+          <span class="blog-read">Read article →</span>
+        </div>
+      </a>
+
+      <a class="blog-card reveal" href="https://harshabalaji.wordpress.com/2026/05/08/why-fund-reconciliation-has-a-fatal-flaw-and-why-nobody-is-talking-about-it/" target="_blank">
+        <div class="blog-card-top bct-2">
+          <div class="blog-card-top-text">The Fatal Flaw</div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span class="blog-tag bt-ops">Fund Ops</span>
+            <span class="blog-date">May 8, 2026</span>
+          </div>
+          <div class="blog-title">Why Fund Reconciliation Has a Fatal Flaw — and Why Nobody Is Talking About It</div>
+          <div class="blog-excerpt">I fell into the fund operations world the way most people do — accidentally, and then completely. The standard reconciliation process contains a critical vulnerability: matching identical figures masks underlying errors that both systems inherited from the same wrong source.</div>
+          <span class="blog-read">Read article →</span>
+        </div>
+      </a>
+
+      <a class="blog-card reveal" href="https://harshabalaji.wordpress.com/2025/09/16/breaking-down-finance-jargons-terms-everyone-should-know-with-a-brief-history-of-money/" target="_blank">
+        <div class="blog-card-top bct-3">
+          <div class="blog-card-top-text">Finance Explained</div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span class="blog-tag bt-edu">Education</span>
+            <span class="blog-date">Sep 16, 2025</span>
+          </div>
+          <div class="blog-title">Breaking Down Finance Jargons: Terms Everyone Should Know (With a Brief History of Money)</div>
+          <div class="blog-excerpt">Money has always been central to how we live, but its story is far older and more fascinating than most of us realize. From Mesopotamian accounting to modern digital wealth — understanding finance jargon isn't about memorizing terms, it's about understanding history.</div>
+          <span class="blog-read">Read article →</span>
+        </div>
+      </a>
+
+    </div>
+    <div style="text-align:center;">
+      <a href="https://harshabalaji.wordpress.com/blog-posts/" target="_blank" class="blog-read-all">View all posts →</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ─── CONTACT ─── -->
+<section id="contact" class="full-bleed-section">
+  <div class="section-inner">
+    <div class="contact-card reveal">
+      <h2>Let's build something<br/>that <em>matters.</em></h2>
+      <p>Fund manager, operations lead, fintech investor, or just someone who finds this problem genuinely interesting — I'd love to connect.</p>
+      <a href="mailto:balajiharsha0@gmail.com" class="cta-btn">balajiharsha0@gmail.com</a>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/harsha-balaji/" target="_blank" class="slink">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://harshabalaji.wordpress.com" target="_blank" class="slink">
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Blog
+        </a>
+        <a href="tel:+14154167446" class="slink">
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (415) 416-7446
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <p>© 2026 Harsha Balaji · San Francisco, CA · Patent Pending</p>
+  <a href="https://www.linkedin.com/in/harsha-balaji/" target="_blank">LinkedIn</a>
+</footer>
+
+<script>
+  // Progress bar
+  const bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    bar.style.width = (scrollY / (document.body.scrollHeight - innerHeight) * 100) + '%';
+  });
+
+  // Nav becomes solid on scroll
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 60));
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('in'), i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(el => io.observe(el));
+
+  // If photo fails to load (file not yet copied), show a warm placeholder
+  const photo = document.getElementById('hero-photo');
+  if (photo) {
+    photo.onerror = () => {
+      photo.style.display = 'none';
+      photo.parentElement.style.background = 'linear-gradient(135deg, #F2EBE0 0%, #E6DDD0 100%)';
+      const ph = document.createElement('div');
+      ph.style.cssText = 'display:flex;align-items:center;justify-content:center;height:100%;font-family:DM Serif Display,serif;font-size:4rem;color:#BF4B1A;opacity:0.3;';
+      ph.textContent = 'HB';
+      photo.parentElement.appendChild(ph);
+    };
+  }
+</script>
+</body>
+</html>
